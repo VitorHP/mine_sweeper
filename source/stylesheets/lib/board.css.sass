@@ -1,0 +1,59 @@
+@import "../vendor/bootstrap"
+@import "../vendor/font-awesome"
+
+.game
+  position: relative
+  @extend .row
+
+h1
+  text-align: center
+  margin-bottom: 20px
+
+p.message
+  text-align: center
+  font-size: 24px
+  height: 30px
+
+.controls p
+  font-size: 24px
+  text-align: center
+
+.controls
+  margin: 20px auto
+  text-align: center
+
+table
+  margin: auto
+  margin-bottom: 20px
+
+td
+  border: 1px solid #61946B
+  background-color: #86AF88
+  box-shadow: inset 2px 2px 0px #A2C4A3, inset -1px -1px 0px #215A23
+  height: 40px
+  width: 40px
+  text-align: center
+  cursor: pointer
+
+  &:hover
+    background-color: #90BD87
+
+  &.open
+    box-shadow: none
+
+span
+  @extend .fa
+
+.bomb
+  @extend .fa-bomb
+
+.flag
+  @extend .fa-flag
+
+.overlay
+  position: absolute
+  height: 100%
+  width: 100%
+
+  &.victory
+    background-color: rgba(59, 122, 18, 0.3)

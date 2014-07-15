@@ -1,0 +1,35 @@
+
+
+.game{ 'ng-controller' => 'GameController', 'konami' => 'flag()' }
+  %h1 Mine Sweeper
+  .controls
+    %p Difficulty
+    .difficulty
+      %label{ for: 'difficulty16' } Easy
+      %input{ type: 'radio', name: 'difficulty', id: 'difficulty16', 'ng-model' => 'game.difficulty', value: '16' }
+      %label{ for: 'difficulty20' } Moderate
+      %input{ type: 'radio', name: 'difficulty', id: 'difficulty20', 'ng-model' => 'game.difficulty', value: '20' }
+      %label{ for: 'difficulty30' } Hard
+      %input{ type: 'radio', name: 'difficulty', id: 'difficulty30', 'ng-model' => 'game.difficulty', value: '30' }
+    %p Board Size
+    .board-size
+      %label{ for: 'size8' } Small (8x8)
+      %input{ type: 'radio', name: 'size', id: 'size8', 'ng-model' => 'game.board.size', value: '8' }
+      %label{ for: 'size15' } Medium (15x15)
+      %input{ type: 'radio', name: 'size', id: 'size15', 'ng-model' => 'game.board.size', value: '15' }
+      %label{ for: 'size20' } Big (20x20)
+      %input{ type: 'radio', name: 'size', id: 'size20', 'ng-model' => 'game.board.size', value: '20' }
+
+    %button{ 'ng-click' => 'validate()' } Validate
+    %button{ 'ng-click' => 'newGame()' } New Game
+
+  %p.message {{game.message}}
+
+  %table.board
+    %tr{ 'ng-repeat' => 'line in board track by $index' }
+      %td{ 'ng-repeat' => 'cell in line track by $index', 'ng-click' => 'cellClick([$parent.$index, $index])', 'ng-class' => '{open: cellState([$parent.$index, $index]).open }' }
+        %span{ 'ng-class' => '{ bomb: (cellState([$parent.$index, $index]).bomb && cellState([$parent.$index, $index]).open), flag: (cellState([$parent.$index, $index]).bomb && game.flag) }' }
+          {{cellText([$parent.$index, $index])}}
+
+  %p * to reveal the bombs in the map, use the Konami code (up, up, down, down, left, right, left, right, b, a)
+
